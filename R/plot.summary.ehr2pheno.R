@@ -14,6 +14,7 @@
 #'@importFrom reshape2 melt
 #'
 #'@import ggplot2
+#'@import reshape2
 #'@importFrom viridis scale_color_viridis
 #'
 #'@export
