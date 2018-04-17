@@ -47,7 +47,7 @@ get_thresholds <- function(x, method=c("quantiles", "GaussianMixture"), p=0.1, .
     lowthres <- quantile(x, probs = p) + 0.5
     upthresh <- quantile(x, probs = 1-p) + 0.5
 
-    s <- cut(x, breaks=c(0, lowthres, upthresh, max(x)), labels=c("0", "0.5", "1"), ordered_result=TRUE, right=FALSE)
+    s <- cut(x, breaks=c(0, lowthres, upthresh, max(x)+1), labels=c("0", "0.5", "1"), ordered_result=TRUE, right=FALSE)
   }
 
   if(any(table(s)==0)){
