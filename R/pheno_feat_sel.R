@@ -27,10 +27,10 @@ pheno_feat_sel <- function(surrogate, features, ...){
   index_extremes <- which(surrogate_num %in% c(0, 1))
   surrogate_extremes <- surrogate_num[index_extremes]
 
-  model_cv <- glmnet::cv.glmnet(y=surrogate_extremes, x=features[index_extremes, ],
+  model_cv <- glmnet::cv.glmnet(y=surrogate_extremes, x=features[index_extremes, , drop=FALSE],
                         family = "binomial", type.measure = "class")
 
-  predict_model <- glmnet::glmnet(y=surrogate_extremes, x=features[index_extremes, ],
+  predict_model <- glmnet::glmnet(y=surrogate_extremes, x=features[index_extremes, , drop=FALSE],
                           family = "binomial", lambda = model_cv$lambda.1se)
 
   selected_feat <- which(abs(as.vector(predict_model$beta)) > 0)
