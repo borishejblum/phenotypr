@@ -21,7 +21,9 @@ plot.summary.ehr2pheno <- function(x, ...){
 
   message("Plotting over-optimistic ROC curves on the training set...")
 
-  df2plot <- merge(reshape2::melt(x$TPR, value.name = "TPR"), reshape2::melt(x$FPR, value.name = "FPR"))
+  xx <- x$criteria
+
+  df2plot <- merge(reshape2::melt(xx$TPR, value.name = "TPR"), reshape2::melt(xx$FPR, value.name = "FPR"))
   colnames(df2plot)[c(1,2)] <- c("Patient", "Features")
 
   p <- ggplot(df2plot) +
@@ -30,7 +32,7 @@ plot.summary.ehr2pheno <- function(x, ...){
     theme_bw() +
     viridis::scale_color_viridis(discrete = TRUE) +
     ggtitle("AUC",
-            subtitle = paste(paste(names(x$AUC), formatC(x$AUC, digits=3, format="f"), sep=": "), collapse=" ; ")
+            subtitle = paste(paste(names(xx$AUC), formatC(xx$AUC, digits=3, format="f"), sep=": "), collapse=" ; ")
     )
 
   return(p)
