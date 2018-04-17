@@ -4,13 +4,16 @@
 \alias{pheno_feat_sel}
 \title{Feature selection}
 \usage{
-pheno_feat_sel(surrogate, features, ...)
+pheno_feat_sel(surrogate, features, covariates = NULL, ...)
 }
 \arguments{
 \item{surrogate}{a vector of length \code{n} containing. Coerced to numeric.}
 
-\item{features}{a matrix of dimension \code{n} x \code{p} containing the features
+\item{features}{a matrix of dimension \code{n} x \code{m} containing the features
 from which to select predictors}
+
+\item{covariates}{an optional matrix of dimension \code{n} x \code{r} containing
+additional potential predictors}
 
 \item{\dots}{further agruments not used here}
 }

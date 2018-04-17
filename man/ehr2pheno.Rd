@@ -4,7 +4,7 @@
 \alias{ehr2pheno}
 \title{Phenotyping from EHR data}
 \usage{
-ehr2pheno(codes, nlp, ...)
+ehr2pheno(codes, nlp, covariates = NULL, ...)
 }
 \arguments{
 \item{codes}{a \code{n x q} matrix containg the occurences of the \code{q} diagnosis

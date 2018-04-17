@@ -21,7 +21,7 @@
 #'}
 #'
 #'@export
-ehr2pheno <- function(codes, nlp, ...){
+ehr2pheno <- function(codes, nlp, covariates=NULL, ...){
 
   #codes only
   codes_surrogate <- get_thresholds(x = rowSums(codes), ...)
@@ -39,9 +39,9 @@ ehr2pheno <- function(codes, nlp, ...){
   composite_surrogate_char[composite_surrogate == 0.5] <- "0.5"
   composite_surrogate <- factor(composite_surrogate_char, levels = c("0", "1", "0.5"), ordered=TRUE)
 
-  codes_feat_sel <- pheno_feat_sel(surrogate = codes_surrogate$surrogate, features = codes)
-  nlp_feat_sel <- pheno_feat_sel(surrogate = nlp_surrogate$surrogate, features = nlp)
-  composite_feat_sel <- pheno_feat_sel(surrogate = composite_surrogate, features = cbind(codes, nlp))
+  codes_feat_sel <- pheno_feat_sel(surrogate = codes_surrogate$surrogate, features = codes, covariates = covariates)
+  nlp_feat_sel <- pheno_feat_sel(surrogate = nlp_surrogate$surrogate, features = nlp, covariates = covariates)
+  composite_feat_sel <- pheno_feat_sel(surrogate = composite_surrogate, features = cbind(codes, nlp), covariates = covariates)
 
   res <- list("feat_sel" = list("codes" = codes_feat_sel, "nlp" = nlp_feat_sel,
                                 "both" = composite_feat_sel),

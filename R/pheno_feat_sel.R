@@ -4,8 +4,11 @@
 #'
 #'@param surrogate a vector of length \code{n} containing. Coerced to numeric.
 #'
-#'@param features a matrix of dimension \code{n} x \code{p} containing the features
+#'@param features a matrix of dimension \code{n} x \code{m} containing the features
 #'from which to select predictors
+#'
+#'@param covariates an optional matrix of dimension \code{n} x \code{r} containing
+#'additional potential predictors
 #'
 #'@param \dots further agruments not used here
 #'
@@ -21,11 +24,15 @@
 #'@importFrom glmnet glmnet cv.glmnet
 #'
 #'@export
-pheno_feat_sel <- function(surrogate, features, ...){
+pheno_feat_sel <- function(surrogate, features, covariates=NULL, ...){
 
   surrogate_num <- as.numeric(as.character(surrogate))
   index_extremes <- which(surrogate_num %in% c(0, 1))
   surrogate_extremes <- surrogate_num[index_extremes]
+
+  if(!is.null(covariates)){
+    features <- cbind(features, covariates)
+  }
 
   model_cv <- glmnet::cv.glmnet(y=surrogate_extremes, x=features[index_extremes, , drop=FALSE],
                         family = "binomial", type.measure = "class")
