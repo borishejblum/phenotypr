@@ -13,8 +13,11 @@ codes related to the phenotype of interest for all \code{n} patients}
 \item{nlp}{a \code{n x p} matrix containg the occurences of the \code{q} diagnosis
 codes related to the phenotype of interest for all \code{n} patients}
 
-\item{\dots}{further arguments to be passed to \code{\link{get_thresholds}} or \code{\link{phen_feat_sel}}
-subfunctions}
+\item{covariates}{an optional matrix of dimension \code{n x r} containing
+additional potential predictors}
+
+\item{\dots}{further arguments to be passed to \code{\link[phenotypr]{get_thresholds}}
+or \code{\link[phenotypr]{pheno_feat_sel}} subfunctions}
 }
 \value{
 an object of type \code{ehr2pheno}, which is a list of the following elements:

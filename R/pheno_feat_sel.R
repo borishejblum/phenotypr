@@ -4,10 +4,10 @@
 #'
 #'@param surrogate a vector of length \code{n} containing. Coerced to numeric.
 #'
-#'@param features a matrix of dimension \code{n} x \code{m} containing the features
+#'@param features a matrix of dimension \code{n x m} containing the features
 #'from which to select predictors
 #'
-#'@param covariates an optional matrix of dimension \code{n} x \code{r} containing
+#'@param covariates an optional matrix of dimension \code{n x r} containing
 #'additional potential predictors
 #'
 #'@param \dots further agruments not used here

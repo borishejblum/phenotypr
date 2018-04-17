@@ -29,7 +29,7 @@ plot.summary.ehr2pheno <- function(x, ...){
 
   p <- ggplot(df2plot) +
     geom_abline(slope = 1, intercept = 0, color="grey50") +
-    geom_line(aes(x = FPR, y = TPR, color = Features)) +
+    geom_line(aes_string(x = "FPR", y = "TPR", color = "Features")) +
     theme_bw() +
     viridis::scale_color_viridis(discrete = TRUE) +
     ggtitle("AUC",

@@ -25,6 +25,8 @@
 #'
 #' @import mclust
 #'
+#' @importFrom stats predict quantile
+#'
 #' @export
 get_thresholds <- function(x, method=c("quantiles", "GaussianMixture"), p=0.1, ...){
 

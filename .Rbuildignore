@@ -1,3 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 data/*
+^\.travis\.yml$
+^appveyor\.yml$
+Hackathon_PR_April2018*
+main.R
