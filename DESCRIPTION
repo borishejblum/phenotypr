@@ -2,7 +2,7 @@ Package: phenotypr
 Type: Package
 Title: Elastic-net logistic regression for phenotyping prediction using EHR data
 Version: 0.1.0
-Author: Boris Hejblum, Sebastien Cossuien, Vianney Jouhet
+Author: Boris Hejblum, Sebastien Cossin, Vianney Jouhet
 Maintainer: Boris Hejblum <boris.hejblum@u-bordeaux.fr>
 Description: Elastic Net regression for phenotyping feature selection form EHR using both codified data and Natural Language Processing of notes.
 License: GPL-2
