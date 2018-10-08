@@ -4,7 +4,8 @@
 \alias{get_thresholds}
 \title{Split surrogate into 3 ordered categories based on the number of feature occurences}
 \usage{
-get_thresholds(x, method = c("quantiles", "GaussianMixture"), p = 0.1, ...)
+get_thresholds(x, method = c("quantiles", "GaussianMixture"), p = 0.1,
+  ...)
 }
 \arguments{
 \item{x}{a feature occurence count vector to be split into 3 components}

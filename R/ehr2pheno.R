@@ -26,6 +26,7 @@
 #'@export
 ehr2pheno <- function(codes, nlp, covariates=NULL, ...){
 
+  #browser()
   #codes only
   codes_surrogate <- get_thresholds(x = rowSums(codes), ...)
 

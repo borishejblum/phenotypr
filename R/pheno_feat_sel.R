@@ -41,11 +41,15 @@ pheno_feat_sel <- function(surrogate, features, covariates=NULL, ...){
                           family = "binomial", lambda = model_cv$lambda.1se)
 
   selected_feat <- which(abs(as.vector(predict_model$beta)) > 0)
+
   if(is.null(colnames(features))){
-    selected_features <- selected_feat
+    selected_features <- cbind.data.frame("CUI" = selected_feat,
+                                          "beta"= predict_model$beta[selected_feat, "s0"])
   }else{
-    selected_features <- colnames(features)[selected_feat]
+    selected_features <- cbind.data.frame("CUI" = colnames(features)[selected_feat],
+                                          "beta"= predict_model$beta[selected_feat, "s0"])
   }
+  selected_features <- selected_features[order(selected_features$beta, decreasing = TRUE), ]
 
   return(list("logisticEN_model" = predict_model,
               "sel_feat" = selected_features,

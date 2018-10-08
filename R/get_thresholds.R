@@ -37,6 +37,10 @@ get_thresholds <- function(x, method=c("quantiles", "GaussianMixture"), p=0.1, .
   if(method == "GaussianMixture"){
     mixmod <- mclust::Mclust(data = x, G = 3, modelNames = "E")
 
+    if(is.null(mixmod)){
+      stop("Something went wrong when fitting the Gaussian Mixture to estimate the surrogate threshold...\nPehaps you could consider using method = 'quantiles' instead")
+    }
+
     s <- factor(mixmod$classification, levels = order(mixmod$parameters$mean), ordered=TRUE)
     levels(s) <- c(0, 0.5, 1)
 
@@ -49,12 +53,22 @@ get_thresholds <- function(x, method=c("quantiles", "GaussianMixture"), p=0.1, .
     lowthres <- quantile(x, probs = p) + 0.5
     upthresh <- quantile(x, probs = 1-p) + 0.5
 
+    if(lowthres == upthresh){
+      upthresh <- max(x)
+    }
+    if(lowthres == upthresh){
+      stop("unable to use method = 'quantiles'. Pehaps you could consider using method = 'GaussianMixture' instead...")
+    }
     s <- cut(x, breaks=c(0, lowthres, upthresh, max(x)+1), labels=c("0", "0.5", "1"), ordered_result=TRUE, right=FALSE)
   }
 
   if(any(table(s)==0)){
     print(table(s))
-    stop("At least of the surrogate level is empty...")
+    if(table(s)["0.5"]==0){
+      warning("Average level of the surrogate is empty. Perhaps you can improve the 'p' argument...")
+    }else{
+      stop("At least one of the surrogate extreme levels is empty, unable to fit glmnet")
+    }
   }
 
   return(list("thesholds" = c("lowthres" = lowthres,

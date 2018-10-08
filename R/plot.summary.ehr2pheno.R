@@ -28,13 +28,17 @@ plot.summary.ehr2pheno <- function(x, ...){
   colnames(df2plot)[c(1,2)] <- c("Patient", "Features")
 
   p <- ggplot(df2plot) +
-    geom_abline(slope = 1, intercept = 0, color="grey50") +
+    geom_ribbon(aes_string(x = "FPR", ymax = "TPR", ymin="FPR", fill = "Features"), alpha=0.15) +
     geom_line(aes_string(x = "FPR", y = "TPR", color = "Features")) +
+    geom_abline(slope = 1, intercept = 0, color="grey50") +
     theme_bw() +
-    viridis::scale_color_viridis(discrete = TRUE) +
+    xlab("False Positive Rate") +
+    ylab("True Positive Rate") +
+    viridis::scale_color_viridis("Predictive features", discrete = TRUE, labels = c("Diagnosis codes", "NLP", "Both")) +
+    viridis::scale_fill_viridis("Predictive features", discrete = TRUE, labels = c("Diagnosis codes", "NLP", "Both")) +
     ggtitle("AUC",
-            subtitle = paste(paste(names(xx$AUC), formatC(xx$AUC, digits=3, format="f"), sep=": "), collapse=" ; ")
-    )
-
+            subtitle = paste(paste(c("Diagnosis codes", "NLP", "Both"), formatC(xx$AUC, digits=3, format="f"), sep=": "), collapse=" ; ")
+    ) +
+    labs(caption = "Receiver Operating Curves on training set")
   return(p)
 }

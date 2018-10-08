@@ -7,3 +7,4 @@ main.R*
 *.Rproj
 *.Rmd
 *.html
+plots/*
