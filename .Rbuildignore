@@ -6,3 +6,4 @@ data/*
 Hackathon_PR_April2018*
 main.R
 plots/*
+^\.github$

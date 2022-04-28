@@ -1,7 +1,8 @@
 # phenotypr
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/borishejblum/phenotypr?branch=master&svg=true)](https://ci.appveyor.com/project/borishejblum/phenotypr)
-[![Travis-CI Build Status](https://travis-ci.org/borishejblum/phenotypr.svg?branch=master)](https://travis-ci.org/borishejblum/phenotypr)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/borishejblum/phenotypr/workflows/R-CMD-check/badge.svg)](https://github.com/borishejblum/phenotypr/actions)
+<!-- badges: end -->
 
 The goal of `phenotypr` is to predict a phenotype form EHR data using 
 both ICD diagnosis codes and NLP processed notes.
